@@ -30,9 +30,17 @@
         },
         "date_of_insertion_unix": {
           "type": "integer"
+        },
+        "received_booster_percentage": {
+          "type": "integer"
         }
       },
-      "required": ["administered_total", "date_unix", "date_of_insertion_unix"],
+      "required": [
+        "administered_total",
+        "date_unix",
+        "date_of_insertion_unix",
+        "received_booster_percentage"
+      ],
       "additionalProperties": false
     }
   }
