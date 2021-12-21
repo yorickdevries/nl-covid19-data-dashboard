@@ -371,6 +371,7 @@ export interface NlBoosterShotAdministeredValue {
   ggd_administered_total: number;
   others_administered_last_7_days: number;
   others_administered_total: number;
+  received_booster_percentage: number;
   date_unix: number;
   date_of_insertion_unix: number;
 }
@@ -403,7 +404,6 @@ export interface NlBoosterAndThirdShotAdministeredValue {
   administered_total: number;
   date_unix: number;
   date_of_insertion_unix: number;
-  received_booster_percentage: number;
 }
 export interface NlThirdShotAdministered {
   values: NlThirdShotAdministeredValue[];
