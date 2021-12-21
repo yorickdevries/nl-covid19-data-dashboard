@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "nl_booster_percentage_received",
+  "type": "object",
+  "properties": {
+    "values": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/value"
+      }
+    }
+  },
+  "required": ["values"],
+  "additionalProperties": false,
+  "definitions": {
+    "value": {
+      "title": "nl_booster_percentage_received_value",
+      "type": "object",
+      "properties": {
+        "booster_percentage_received_value": {
+          "type": "integer"
+        }
+      },
+      "required": ["booster_percentage_received_value"],
+      "additionalProperties": false
+    }
+  }
+}
