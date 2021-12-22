@@ -32,7 +32,7 @@
           "type": "integer"
         },
         "received_booster_percentage": {
-          "type": "integer"
+          "type": "number"
         }
       },
       "required": [
