@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "sanity start",
+    "sanity": "sanity",
     "build": "yarn workspace @corona-dashboard/common build && yarn workspace @corona-dashboard/icons build && yarn workspace @corona-dashboard/cli generate-data-structures && sanity build",
     "clean": "npx rimraf dist .sanity-asset-cache .lokalize-reference",
     "nuke": "yarn clean && npx rimraf node_modules",

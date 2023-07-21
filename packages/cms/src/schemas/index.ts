@@ -20,6 +20,8 @@ import { advice } from './documents/pages/homepage/advice';
 import { summary } from './documents/pages/homepage/summary';
 import { summaryItem } from './documents/pages/homepage/summary-item';
 import { theme } from './documents/pages/homepage/theme';
+import { deceasedPageSectionsList } from './documents/pages/archiving/deceasedPageSections';
+import { section } from './documents/pages/archiving/section';
 import { themeCollection } from './documents/pages/homepage/theme-collection';
 import { themeLink } from './documents/pages/homepage/theme-link';
 import { themeTile } from './documents/pages/homepage/theme-tile';
@@ -70,6 +72,8 @@ const documentSchemas = [
   thermometerTimeline,
   thermometerTimelineEvent,
   thermometerTrendIcon,
+  deceasedPageSectionsList,
+  section,
   trendIcon,
 ];
 const pageSchemas = [about, accessibility, contact, dataExplained, faq, homepage, notFound];

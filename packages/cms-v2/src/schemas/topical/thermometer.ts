@@ -85,7 +85,7 @@ export const thermometer = {
     },
     {
       title: 'Huidige stand omschrijving',
-      description: 'De omschrijving specifiek voor de huidige thermometer stand bij de trendIcon',
+      description: 'De omschrijving specifiek voor de huidige thermometer stand bij de da',
       name: 'levelDescription',
       type: 'localeText',
       validation: REQUIRED,
