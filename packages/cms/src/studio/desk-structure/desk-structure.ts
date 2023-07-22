@@ -6,7 +6,6 @@ import { dataExplainedStructureItem } from './data-explained-structure-item';
 import { elementsStructureItem } from './elements-structure-item';
 import { faqStructureItem } from './faq-structure-item';
 import { homepageStructureItem } from './homepage-structure-item';
-import { archivingSectionsItem } from './archiving-sections-item';
 import { lokalizeStructureItem } from './lokalize-structure-item';
 import { notFoundPageStructureItem } from './not-found-page-structure-item';
 import { pagePartsStructureItem } from './page-parts-structure-item';
@@ -29,8 +28,6 @@ export const deskStructure = (S: StructureBuilder, context: StructureResolverCon
       S.divider(),
 
       homepageStructureItem(S),
-
-      archivingSectionsItem(S),
 
       notFoundPageStructureItem(S),
 

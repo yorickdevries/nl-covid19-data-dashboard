@@ -1,4 +1,4 @@
-import { Bs123, BsBook, BsBookHalf, BsFileRichtext, BsLink, BsNewspaper, BsQuestionCircle, BsTranslate, BsBarChartSteps } from 'react-icons/bs';
+import { Bs123, BsBook, BsBookHalf, BsFileRichtext, BsLink, BsNewspaper, BsQuestionCircle, BsTranslate } from 'react-icons/bs';
 import { IconType } from 'react-icons/lib';
 import { map } from 'rxjs/operators';
 import { StructureBuilder, StructureResolverContext } from 'sanity/desk';
@@ -114,7 +114,7 @@ const pageDataItem = (pageData: PagePartChildPage, S: StructureBuilder) => {
     pageArticles: BsNewspaper,
     pageDataExplained: Bs123,
     pageFAQs: BsQuestionCircle,
-    pageSections: BsBarChartSteps,
+    pageSections: BsNewspaper,
     pageHighlightedItems: BsNewspaper,
     pageLinks: BsLink,
     pageRichText: BsFileRichtext,

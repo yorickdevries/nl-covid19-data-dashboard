@@ -38,7 +38,7 @@ export const actions = (prev: DocumentActionComponent[], context: DocumentAction
     case 'pageRichText':
     case 'themeTile':
     case 'veelgesteldeVragen':
-    case 'paginaSecties':
+    case 'pageSections':
     case 'weeklySummaryItem':
       // Allows all actions.
       return prev;
