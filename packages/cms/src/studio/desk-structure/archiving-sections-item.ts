@@ -7,9 +7,10 @@ export const archivingSectionsItem = (S: StructureBuilder) => {
     .id('archivingSections')
     .title('Secties configuratie')
     .icon(BsBarChartSteps)
+
     .child(
       S.list()
-        .title('Pagina configuratie')
-        .items([addStructureItem(S, BsBarChartSteps, 'Sterfte pagina', 'deceasedPageSections')])
+        .title('Pagina secties')
+        .items([addStructureItem(S, BsBarChartSteps, 'Secties', 'paginaSecties'), ...S.documentTypeListItems().filter((item) => item.getId() === 'section')])
     );
 };

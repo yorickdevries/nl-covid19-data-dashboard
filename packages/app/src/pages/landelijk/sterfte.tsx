@@ -7,7 +7,7 @@ import { TileList } from '~/components/tile-list';
 import { Layout, NlLayout } from '~/domain/layout';
 import { Languages, SiteText } from '~/locale';
 import { ElementsQueryResult, getElementsQuery } from '~/queries/get-elements-query';
-import { getArticleParts, getDataExplainedParts, getFaqParts, getPagePartsQuery } from '~/queries/get-page-parts-query';
+import { getArticleParts, getDataExplainedParts, getFaqParts, getPagePartsQuery, getPageSectionsParts } from '~/queries/get-page-parts-query';
 import { StaticProps, createGetStaticProps } from '~/static-props/create-get-static-props';
 import { createGetContent, getLastGeneratedDate, getLokalizeTexts, selectNlData } from '~/static-props/get-data';
 import { space } from '~/style/theme';
@@ -21,7 +21,7 @@ import { DeceasedNationalPageArchivedInformationBlock } from '~/sections/decease
 import { DeceasedNationalPageTwoKpiSection } from '~/sections/deceased/deceased-national-page-two-kpi-section';
 import { DeceasedNationalPageTimeSeriesChart } from '~/sections/deceased/deceased-national-page-time-series-chart';
 import { DeceasedNationalPageAgeDemographic } from '~/sections/deceased/deceased-national-page-age-demographic';
-import { colors } from '@corona-dashboard/common/src/theme/colors';
+import { colors } from '@corona-dashboard/common';
 
 const selectLokalizeTexts = (siteText: SiteText) => ({
   metadataTexts: siteText.pages.topical_page.nl.nationaal_metadata,
@@ -52,6 +52,7 @@ export const getStaticProps = createGetStaticProps(
         articles: getArticleParts(content.parts.pageParts, 'deceasedMonitorArticles'),
         faqs: getFaqParts(content.parts.pageParts, 'deceasedPageFAQs'),
         dataExplained: getDataExplainedParts(content.parts.pageParts, 'deceasedPageDataExplained'),
+        pageSections: getPageSectionsParts(content.parts.pageParts, 'deceasedPageDataExplained'),
         elements: content.elements,
       },
     };
@@ -61,7 +62,9 @@ export const getStaticProps = createGetStaticProps(
 export type DeceasedNationalPageProps = StaticProps<typeof getStaticProps>;
 
 const DeceasedNationalPage = (props: DeceasedNationalPageProps) => {
-  const { pageText, lastGenerated } = props;
+  const { pageText, lastGenerated, content } = props;
+
+  console.log(content.pageSections);
 
   const [isArchivedContentShown, setIsArchivedContentShown] = useState<boolean>(false);
 

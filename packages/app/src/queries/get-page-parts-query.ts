@@ -1,5 +1,5 @@
 import { isDefined } from 'ts-is-present';
-import { ArticleParts, DataExplainedParts, FaqParts, HighlightedItemParts, LinkParts, PageIdentifier, PagePart, RichTextParts } from '~/types/cms';
+import { ArticleParts, DataExplainedParts, FaqParts, HighlightedItemParts, LinkParts, PageIdentifier, PagePart, PageSectionsParts, RichTextParts } from '~/types/cms';
 
 export const getPagePartsQuery = (pageIdentifier: PageIdentifier) => {
   const query = `//groq
@@ -18,6 +18,10 @@ export const getPagePartsQuery = (pageIdentifier: PageIdentifier) => {
           buttonTitle,
           buttonText,
           sectionTitle
+        },
+        },
+        (_type == 'pageSections') => {
+          Section[]->{_id, pogeIsArchived, sections[]->{_id, name, isArchived}},
         },
         (_type == 'pageDataExplained') => {
           item->{slug},
@@ -73,6 +77,16 @@ export const getFaqParts = (pageParts: PagePart[], pageDataKind: string) => {
         buttonTitle: parts.buttonTitle,
         buttonText: parts.buttonText,
         sectionTitle: parts.sectionTitle,
+      }
+    : null;
+};
+
+export const getPageSectionsPart = (pageParts: PagePart[], pageDataKind: string) => {
+  const parts = filterByType<PageSectionsParts>(pageParts, 'pageSections').find((pagePart) => pagePart.pageDataKind === pageDataKind);
+  return isDefined(parts)
+    ? {
+        sections: parts.sections,
+        pogeIsArchived: parts.pageIsArchived,
       }
     : null;
 };

@@ -1,4 +1,5 @@
 import { PortableTextEntry } from '@sanity/block-content-to-react';
+import { bool } from 'sharp';
 import { ArticleSummary } from '~/components/articles/article-teaser';
 import { CategoriesTypes } from '~/domain/topical/common/categories';
 
@@ -22,7 +23,7 @@ export type PageIdentifier =
   | 'variants_page'
   | 'coronathermometer_page';
 
-export type PartTypes = 'pageArticles' | 'pageDataExplained' | 'pageFAQs' | 'pageHighlightedItems' | 'pageLinks' | 'pageRichText';
+export type PartTypes = 'pageArticles' | 'pageDataExplained' | 'pageFAQs' | 'pageSections' | 'pageHighlightedItems' | 'pageLinks' | 'pageRichText';
 
 export type PageBasePart = {
   pageDataKind: string;
@@ -51,6 +52,12 @@ export type FaqParts = {
   buttonText: RichContentBlock[];
 } & PageBasePart;
 
+export type PageSectionsParts = {
+  _type: 'pageSections';
+  sections: PageSection[];
+  pageIsArchived: boolean;
+} & PageBasePart;
+
 export type HighlightedItemParts = {
   _type: 'pageHighlightedItems';
   highlights: ArticleSummary[];
@@ -70,7 +77,7 @@ export type RichTextParts = {
   text: RichContentBlock[];
 } & PageBasePart;
 
-export type PagePart = ArticleParts | DataExplainedParts | FaqParts | HighlightedItemParts | LinkParts | RichTextParts;
+export type PagePart = ArticleParts | DataExplainedParts | FaqParts | PageSectionsParts | HighlightedItemParts | LinkParts | RichTextParts;
 
 export type PagePartQueryResult<T extends PagePart = PagePart> = {
   pageParts: T[];
@@ -80,6 +87,11 @@ export type FAQuestionAndAnswer = {
   content: RichContentBlock[] | null;
   title: string;
   group: string;
+};
+
+export type PageSection = {
+  name: string;
+  isArchived: boolean;
 };
 
 export type DataExplainedGroup = {

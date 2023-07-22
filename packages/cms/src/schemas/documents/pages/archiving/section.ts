@@ -1,5 +1,6 @@
 import { BsBarChartSteps } from 'react-icons/bs';
 import { defineField, defineType } from 'sanity';
+import { deceasedNationalPage } from '@corona-dashboard/common';
 
 export const section = defineType({
   type: 'document',
@@ -8,22 +9,24 @@ export const section = defineType({
   icon: BsBarChartSteps,
   fields: [
     defineField({
-      title: 'Gearchiveerd',
-      name: 'archived',
-      type: 'boolean',
-      initialValue: false,
+      title: 'Sectie naam',
+      name: 'name',
+      type: 'string',
+      options: {
+        list: deceasedNationalPage,
+      },
     }),
     defineField({
-      title: 'Volgorde van de sectie',
-      name: 'order',
-      type: 'number',
-      initialValue: 0,
+      title: 'Gearchiveerd',
+      name: 'isArchived',
+      type: 'boolean',
+      initialValue: false,
     }),
   ],
   preview: {
     select: {
-      title: 'title.nl',
-      subtitle: 'subTitle.nl',
+      name: 'name',
+      archived: 'archived',
     },
   },
 });

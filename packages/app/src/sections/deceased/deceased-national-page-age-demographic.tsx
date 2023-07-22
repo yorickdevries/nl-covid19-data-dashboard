@@ -5,7 +5,7 @@ import { useIntl } from '~/intl';
 import { SiteText } from '~/locale';
 import { useDynamicLokalizeTexts } from '~/utils/cms/use-dynamic-lokalize-texts';
 import { getLastInsertionDateOfPage } from '~/utils/get-last-insertion-date-of-page';
-import { colors } from '@corona-dashboard/common/src/theme/colors';
+import { colors } from '@corona-dashboard/common';
 import { DeceasedNationalPageProps } from '~/pages/landelijk/sterfte';
 
 const selectLokalizeTexts = (siteText: SiteText) => ({

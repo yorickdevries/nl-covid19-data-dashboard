@@ -4,6 +4,7 @@ import { pageIdentifier } from './documents/page-identifier';
 import { articles } from './documents/page-parts/articles';
 import { dataExplained as dataExplainedParts } from './documents/page-parts/data-explained';
 import { faq as faqParts } from './documents/page-parts/faq';
+import { pageSections as pageSectionsParts } from './documents/page-parts/sections';
 import { highlights } from './documents/page-parts/highlights';
 import { links } from './documents/page-parts/links';
 import { about } from './documents/pages/about';
@@ -20,7 +21,7 @@ import { advice } from './documents/pages/homepage/advice';
 import { summary } from './documents/pages/homepage/summary';
 import { summaryItem } from './documents/pages/homepage/summary-item';
 import { theme } from './documents/pages/homepage/theme';
-import { deceasedPageSectionsList } from './documents/pages/archiving/deceasedPageSections';
+import { sections } from './documents/pages/archiving/';
 import { section } from './documents/pages/archiving/section';
 import { themeCollection } from './documents/pages/homepage/theme-collection';
 import { themeLink } from './documents/pages/homepage/theme-link';
@@ -60,6 +61,7 @@ const documentSchemas = [
   notFoundItem,
   notFoundLink,
   pageIdentifier,
+  section,
   summary,
   summaryItem,
   theme,
@@ -72,12 +74,10 @@ const documentSchemas = [
   thermometerTimeline,
   thermometerTimelineEvent,
   thermometerTrendIcon,
-  deceasedPageSectionsList,
-  section,
   trendIcon,
 ];
-const pageSchemas = [about, accessibility, contact, dataExplained, faq, homepage, notFound];
-const pagePartSchemas = [articles, dataExplainedParts, faqParts, highlights, links];
+const pageSchemas = [about, accessibility, contact, dataExplained, faq, sections, homepage, notFound];
+const pagePartSchemas = [articles, dataExplainedParts, faqParts, pageSectionsParts, highlights, links];
 const elementSchemas = [timelineEvent, timelineEventCollection, timeSeries];
 const objectSchemas = [link];
 

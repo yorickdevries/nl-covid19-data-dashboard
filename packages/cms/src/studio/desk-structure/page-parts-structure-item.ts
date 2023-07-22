@@ -11,7 +11,7 @@ export const pagePartsStructureItem = (S: StructureBuilder) => {
         .title("Pagina's en onderdelen")
         .items([
           ...S.documentTypeListItems().filter((item) =>
-            ['pageIdentifier', 'pageArticles', 'pageDataExplained', 'pageFAQs', 'pageLinks', 'pageHighlightedItems'].includes(item.getId() ?? '')
+            ['pageIdentifier', 'pageArticles', 'pageDataExplained', 'pageFAQs', 'pageSections', 'pageLinks', 'pageHighlightedItems'].includes(item.getId() ?? '')
           ),
         ])
     );
