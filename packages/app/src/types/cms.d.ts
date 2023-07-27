@@ -52,6 +52,11 @@ export type FaqParts = {
   buttonText: RichContentBlock[];
 } & PageBasePart;
 
+export type NormalizedPageSectionsParts = {
+  sections: PageSection[];
+  pageIsArchived: boolean;
+};
+
 export type PageSectionsParts = {
   _type: 'pageSections';
   sections: PageSection[];
@@ -92,6 +97,7 @@ export type FAQuestionAndAnswer = {
 export type PageSection = {
   name: string;
   isArchived: boolean;
+  _id?: string;
 };
 
 export type DataExplainedGroup = {

@@ -13,7 +13,7 @@ export const sections = defineType({
     defineField({
       title: 'Gearchiveerde pagina',
       description: 'Wanneer deze waarde aan staat is de pagina gearchiveerde',
-      name: 'pogeIsArchived',
+      name: 'pageIsArchived',
       type: 'boolean',
       initialValue: false,
     }),

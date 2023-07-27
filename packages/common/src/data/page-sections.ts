@@ -1,6 +1,6 @@
 type PageIds = 'deceased_page';
 
-type DeceasedNationalPageSections =
+export type DeceasedNationalPageSections =
   | 'DeceasedNationalPageInformationBlock'
   | 'DeceasedNationalPageDeceasedMonitorSection'
   | 'DeceasedNationalPageFaqTile'
@@ -10,15 +10,15 @@ type DeceasedNationalPageSections =
   | 'DeceasedNationalPageTimeSeriesChart'
   | 'DeceasedNationalPageAgeDemographic';
 
-type PageSectionsOptionsValues = { title: string; value: DeceasedNationalPageSections };
+type PageSectionsOptionsValues = { title: string; value: DeceasedNationalPageSections; image?: string };
 
 export const deceasedNationalPage: PageSectionsOptionsValues[] = [
-  { title: 'DeceasedNationalPageInformationBlock', value: 'DeceasedNationalPageInformationBlock' },
-  { title: 'DeceasedNationalPageDeceasedMonitorSection', value: 'DeceasedNationalPageDeceasedMonitorSection' },
-  { title: 'DeceasedNationalPageFaqTile', value: 'DeceasedNationalPageFaqTile' },
-  { title: 'DeceasedNationalPageArticlesTile', value: 'DeceasedNationalPageArticlesTile' },
-  { title: 'DeceasedNationalPageArchivedInformationBlock', value: 'DeceasedNationalPageArchivedInformationBlock' },
-  { title: 'DeceasedNationalPageTwoKpiSection', value: 'DeceasedNationalPageTwoKpiSection' },
-  { title: 'DeceasedNationalPageTimeSeriesChart', value: 'DeceasedNationalPageTimeSeriesChart' },
-  { title: 'DeceasedNationalPageAgeDemographic', value: 'DeceasedNationalPageAgeDemographic' },
+  { title: 'Information Block', value: 'DeceasedNationalPageInformationBlock', image: 'DeceasedNationalPageInformationBlock.png' },
+  { title: 'Deceased Monitor Section', value: 'DeceasedNationalPageDeceasedMonitorSection', image: 'DeceasedNationalPageDeceasedMonitorSection.png' },
+  { title: 'Faq Tile', value: 'DeceasedNationalPageFaqTile', image: 'DeceasedNationalPageFaqTile.png' },
+  { title: 'Articles Tile', value: 'DeceasedNationalPageArticlesTile', image: 'DeceasedNationalPageArticlesTile.png' },
+  { title: 'Archived Information Block', value: 'DeceasedNationalPageArchivedInformationBlock', image: 'DeceasedNationalPageArchivedInformationBlock.png' },
+  { title: 'Two Kpi Section', value: 'DeceasedNationalPageTwoKpiSection', image: 'DeceasedNationalPageTwoKpiSection.png' },
+  { title: 'Time Series Chart', value: 'DeceasedNationalPageTimeSeriesChart', image: 'DeceasedNationalPageTimeSeriesChart.png' },
+  { title: 'Age Demographic', value: 'DeceasedNationalPageAgeDemographic', image: 'DeceasedNationalPageAgeDemographic.png' },
 ];

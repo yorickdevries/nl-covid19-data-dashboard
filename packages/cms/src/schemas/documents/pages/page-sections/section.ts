@@ -25,8 +25,8 @@ export const section = defineType({
   ],
   preview: {
     select: {
-      name: 'name',
-      archived: 'archived',
+      title: 'name',
+      subtitle: 'isArchived',
     },
   },
 });

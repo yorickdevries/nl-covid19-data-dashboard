@@ -19,9 +19,9 @@ export const getPagePartsQuery = (pageIdentifier: PageIdentifier) => {
           buttonText,
           sectionTitle
         },
-        },
         (_type == 'pageSections') => {
-          Section[]->{_id, pogeIsArchived, sections[]->{_id, name, isArchived}},
+          pageIsArchived,
+          sections[]->{_id, name, isArchived}
         },
         (_type == 'pageDataExplained') => {
           item->{slug},
@@ -46,9 +46,13 @@ export const getPagePartsQuery = (pageIdentifier: PageIdentifier) => {
 
 const isOfType = <T extends PagePart>(value: PagePart, type: string): value is T => value._type === type;
 
-const filterByType = <T extends PagePart>(pageParts: PagePart[], type: string): T[] => pageParts.filter((value): value is T => isOfType<T>(value, type));
+const filterByType = <T extends PagePart>(pageParts: PagePart[], type: string): T[] => {
+  console.log(pageParts);
+  return pageParts.filter((value): value is T => isOfType<T>(value, type));
+};
 
 export const getArticleParts = (pageParts: PagePart[], pageDataKind: string) => {
+  console.log(pageParts);
   const parts = filterByType<ArticleParts>(pageParts, 'pageArticles').find((pagePart) => pagePart.pageDataKind === pageDataKind);
   return isDefined(parts)
     ? {
@@ -81,12 +85,12 @@ export const getFaqParts = (pageParts: PagePart[], pageDataKind: string) => {
     : null;
 };
 
-export const getPageSectionsPart = (pageParts: PagePart[], pageDataKind: string) => {
+export const getPageSectionsParts = (pageParts: PagePart[], pageDataKind: string) => {
   const parts = filterByType<PageSectionsParts>(pageParts, 'pageSections').find((pagePart) => pagePart.pageDataKind === pageDataKind);
   return isDefined(parts)
     ? {
         sections: parts.sections,
-        pogeIsArchived: parts.pageIsArchived,
+        pageIsArchived: parts.pageIsArchived,
       }
     : null;
 };

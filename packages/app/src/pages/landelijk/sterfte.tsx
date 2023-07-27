@@ -1,6 +1,5 @@
 import { GetStaticPropsContext } from 'next';
 import { useState } from 'react';
-import { Box } from '~/components/base/box';
 import { Divider } from '~/components/divider';
 import { PageInformationBlock } from '~/components/page-information-block';
 import { TileList } from '~/components/tile-list';
@@ -10,8 +9,7 @@ import { ElementsQueryResult, getElementsQuery } from '~/queries/get-elements-qu
 import { getArticleParts, getDataExplainedParts, getFaqParts, getPagePartsQuery, getPageSectionsParts } from '~/queries/get-page-parts-query';
 import { StaticProps, createGetStaticProps } from '~/static-props/create-get-static-props';
 import { createGetContent, getLastGeneratedDate, getLokalizeTexts, selectNlData } from '~/static-props/get-data';
-import { space } from '~/style/theme';
-import { ArticleParts, PagePartQueryResult } from '~/types/cms';
+import { ArticleParts, NormalizedPageSectionsParts, PagePartQueryResult } from '~/types/cms';
 import { useDynamicLokalizeTexts } from '~/utils/cms/use-dynamic-lokalize-texts';
 import { DeceasedNationalPageInformationBlock } from '~/sections/deceased/deceased-national-page-information-block';
 import { DeceasedNationalPageDeceasedMonitorSection } from '~/sections/deceased/deceased-national-page-deceased-monitor-section';
@@ -21,7 +19,8 @@ import { DeceasedNationalPageArchivedInformationBlock } from '~/sections/decease
 import { DeceasedNationalPageTwoKpiSection } from '~/sections/deceased/deceased-national-page-two-kpi-section';
 import { DeceasedNationalPageTimeSeriesChart } from '~/sections/deceased/deceased-national-page-time-series-chart';
 import { DeceasedNationalPageAgeDemographic } from '~/sections/deceased/deceased-national-page-age-demographic';
-import { colors } from '@corona-dashboard/common';
+import React from 'react';
+import { DeceasedNationalPageSections } from '@corona-dashboard/common';
 
 const selectLokalizeTexts = (siteText: SiteText) => ({
   metadataTexts: siteText.pages.topical_page.nl.nationaal_metadata,
@@ -52,7 +51,7 @@ export const getStaticProps = createGetStaticProps(
         articles: getArticleParts(content.parts.pageParts, 'deceasedMonitorArticles'),
         faqs: getFaqParts(content.parts.pageParts, 'deceasedPageFAQs'),
         dataExplained: getDataExplainedParts(content.parts.pageParts, 'deceasedPageDataExplained'),
-        pageSections: getPageSectionsParts(content.parts.pageParts, 'deceasedPageDataExplained'),
+        pageSections: getPageSectionsParts(content.parts.pageParts, 'deceasedPageSections'),
         elements: content.elements,
       },
     };
@@ -64,7 +63,32 @@ export type DeceasedNationalPageProps = StaticProps<typeof getStaticProps>;
 const DeceasedNationalPage = (props: DeceasedNationalPageProps) => {
   const { pageText, lastGenerated, content } = props;
 
-  console.log(content.pageSections);
+  const myPageSectionsParts = content.pageSections;
+
+  console.log(myPageSectionsParts);
+
+  const separateComponentsByArchiveStatus = (pageSectionsParts: NormalizedPageSectionsParts, props: DeceasedNationalPageProps): [React.ReactElement[], React.ReactElement[]] => {
+    const archivedComponents: React.ReactElement[] = [];
+    const nonArchivedComponents: React.ReactElement[] = [];
+
+    pageSectionsParts.sections.forEach((section) => {
+      if (section.name in components) {
+        const Component = components[section.name];
+        const componentElement = <Component {...props} />;
+        if (section.isArchived) {
+          archivedComponents.push(componentElement);
+        } else {
+          nonArchivedComponents.push(componentElement);
+        }
+      } else {
+        console.warn(`Component "${section.name}" not found.`);
+      }
+    });
+
+    return [nonArchivedComponents, archivedComponents];
+  };
+
+  const [nonArchivedComponents, archivedComponents] = myPageSectionsParts ? separateComponentsByArchiveStatus(myPageSectionsParts, props) : [[], []];
 
   const [isArchivedContentShown, setIsArchivedContentShown] = useState<boolean>(false);
 
@@ -80,10 +104,7 @@ const DeceasedNationalPage = (props: DeceasedNationalPageProps) => {
     <Layout {...metadata} lastGenerated={lastGenerated}>
       <NlLayout>
         <TileList>
-          <DeceasedNationalPageInformationBlock {...props} />
-          <DeceasedNationalPageDeceasedMonitorSection {...props} />
-          <DeceasedNationalPageFaqTile {...props} />
-          <DeceasedNationalPageArticlesTile {...props} />
+          {nonArchivedComponents}
 
           <Divider />
           <PageInformationBlock
@@ -92,14 +113,7 @@ const DeceasedNationalPage = (props: DeceasedNationalPageProps) => {
             isArchivedHidden={isArchivedContentShown}
             onToggleArchived={() => setIsArchivedContentShown(!isArchivedContentShown)}
           />
-          {isArchivedContentShown && (
-            <Box borderTop={`2px solid ${colors.gray2}`} spacing={5} paddingTop={space[4]}>
-              <DeceasedNationalPageArchivedInformationBlock {...props} />
-              <DeceasedNationalPageTwoKpiSection {...props} />
-              <DeceasedNationalPageTimeSeriesChart {...props} />
-              <DeceasedNationalPageAgeDemographic {...props} />
-            </Box>
-          )}
+          {isArchivedContentShown && archivedComponents}
         </TileList>
       </NlLayout>
     </Layout>
